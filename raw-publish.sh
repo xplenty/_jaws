@@ -108,9 +108,9 @@ find _site -name '*.css'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 say "Syncing HTML/XML"
 
 s3cmd sync \
-	-c s3cfg
-	--access_key $AWS_ACCESS_KEY_ID
-	--secret_key $AWS_SECRET_ACCESS_KEY
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
 	--acl-public \
@@ -129,9 +129,9 @@ s3cmd sync \
 say "Syncing CSS/JS"
 
 s3cmd sync \
-	-c s3cfg
-	--access_key $AWS_ACCESS_KEY_ID
-	--secret_key $AWS_SECRET_ACCESS_KEY
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
 	--acl-public \
@@ -150,9 +150,9 @@ s3cmd sync \
 say "Syncing Remaining Files"
 
 s3cmd sync \
-	-c s3cfg
-	--access_key $AWS_ACCESS_KEY_ID
-	--secret_key $AWS_SECRET_ACCESS_KEY
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
 	--acl-public \
