@@ -34,25 +34,25 @@ $JAWS_GENERATE
 # Use absolute CDN paths for images, css, js
 #
 
-say "Replacing CDN Paths"
+# say "Replacing CDN Paths"
 
-VERBOSE=
-if [[ $JAWS_VERBOSE -eq 1 ]]; then
-	VERBOSE="-exec echo {} ;"
-fi
+# VERBOSE=
+# if [[ $JAWS_VERBOSE -eq 1 ]]; then
+# 	VERBOSE="-exec echo {} ;"
+# fi
 
-# Escape path for sed
-STATICCDN=${JAWS_STATICCDN//\//\\\/}
-IMAGECDN=${JAWS_STATICCDN//\//\\\/}
+# # Escape path for sed
+# STATICCDN=${JAWS_STATICCDN//\//\\\/}
+# IMAGECDN=${JAWS_STATICCDN//\//\\\/}
 
-find -E _site \
-	-type f \
-	-regex '.*\.(html|js|css)' \
-	$VERBOSE \
-	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
-	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
-	-exec sed -Ei '' "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
-	-exec sed -Ei '' "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
+# find -E _site \
+# 	-type f \
+# 	-regex '.*\.(html|js|css)' \
+# 	$VERBOSE \
+# 	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
+# 	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
+# 	-exec sed -Ei '' "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
+# 	-exec sed -Ei '' "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
 
 # TODO - this should really be replaced by a proper parser to be safe
 
@@ -78,16 +78,16 @@ find _site -name '*.css' \
 	$VERBOSE \
 	-exec java -jar $SCRIPTS_DIR/yuicompressor.jar -o {} {} \;
 
-say "Minifying HTML"
+# say "Minifying HTML"
 
-find _site -name '*.html' \
-	$VERBOSE \
-	-exec java -jar $SCRIPTS_DIR/htmlcompressor.jar \
-		--compress-js \
-		--compress-css \
-		--remove-intertag-spaces \
-		--type html \
-		-o {} {} \;
+# find _site -name '*.html' \
+# 	$VERBOSE \
+# 	-exec java -jar $SCRIPTS_DIR/htmlcompressor.jar \
+# 		--compress-js \
+# 		--compress-css \
+# 		--remove-intertag-spaces \
+# 		--type html \
+# 		-o {} {} \;
 
 #
 # gzip text-based files
