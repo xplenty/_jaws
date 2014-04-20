@@ -41,7 +41,7 @@ JAWS_COLOR=1
 ## gzip algorithm
 ##
 ## To use gzip's highest compression setting
-JAWS_ZIPCMD=gzip -9 -n
+JAWS_ZIPCMD="gzip -9 -n"
 ## To use zopfli (https://code.google.com/p/zopfli/) - better but slower
 # JAWS_ZIPCMD=zopfli
 
