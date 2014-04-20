@@ -45,7 +45,8 @@ fi
 STATICCDN=${JAWS_STATICCDN//\//\\\/}
 IMAGECDN=${JAWS_IMAGECDN//\//\\\/}
 
-find -regextype posix-extended _site \
+find _site \
+	-regextype posix-extended  \
 	-type f \
 	-regex '.*\.(html|js|css)' \
 	$VERBOSE \
