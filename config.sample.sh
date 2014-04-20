@@ -13,7 +13,7 @@
 ##
 ## The command used to generate your site.
 ##
-JAWS_GENERATE="jekyll --no-server --no-auto --pygments"
+JAWS_GENERATE="jekyll build"
 
 ##
 ## Max age cache settings
