@@ -34,12 +34,12 @@ $JAWS_GENERATE
 # Use absolute CDN paths for images, css, js
 #
 
-# say "Replacing CDN Paths"
+say "Replacing CDN Paths"
 
-# VERBOSE=
-# if [[ $JAWS_VERBOSE -eq 1 ]]; then
-# 	VERBOSE="-exec echo {} ;"
-# fi
+VERBOSE=
+if [[ $JAWS_VERBOSE -eq 1 ]]; then
+	VERBOSE="-exec echo {} ;"
+fi
 
 # Escape path for sed
 STATICCDN=${JAWS_STATICCDN//\//\\\/}
