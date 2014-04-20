@@ -41,18 +41,18 @@ $JAWS_GENERATE
 # 	VERBOSE="-exec echo {} ;"
 # fi
 
-# # Escape path for sed
-# STATICCDN=${JAWS_STATICCDN//\//\\\/}
-# IMAGECDN=${JAWS_STATICCDN//\//\\\/}
+# Escape path for sed
+STATICCDN=${JAWS_STATICCDN//\//\\\/}
+IMAGECDN=${JAWS_IMAGECDN//\//\\\/}
 
-# find -E _site \
-# 	-type f \
-# 	-regex '.*\.(html|js|css)' \
-# 	$VERBOSE \
-# 	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
-# 	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
-# 	-exec sed -Ei '' "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
-# 	-exec sed -Ei '' "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
+find -E _site \
+	-type f \
+	-regex '.*\.(html|js|css)' \
+	$VERBOSE \
+	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
+	-exec sed -Ei '' "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
+	-exec sed -Ei '' "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
+	-exec sed -Ei '' "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
 
 # TODO - this should really be replaced by a proper parser to be safe
 
