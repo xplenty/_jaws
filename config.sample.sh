@@ -1,19 +1,19 @@
 ##
 ## S3 Bucket
 ##
-#JAWS_BUCKET=s3://example/
+JAWS_BUCKET=${JAWS_BUCKET:="s3://example/"}
 
 ##
 ## CDN Paths
 ##   If desired, these can be the same. You might want them to be different to have different CloudFront settings
 ##
-#JAWS_STATICCDN=http://static.example.com/    
-#JAWS_IMAGECDN=http://images.example.com/
+JAWS_STATICCDN=${JAWS_STATICCDN:="http://images.example.com/"}
+JAWS_IMAGECDN=${JAWS_IMAGECDN:="http://images.example.com/"}
 
 ##
 ## The command used to generate your site.
 ##
-JAWS_GENERATE="jekyll build"
+JAWS_GENERATE=${JAWS_GENERATE:="jekyll build"}
 
 ##
 ## Max age cache settings
@@ -48,4 +48,4 @@ JAWS_ZIPCMD="gzip -9 -n"
 ##
 ## Echo out filenames that are being manipulated - Could get spammy with a large blog
 ##
-JAWS_VERBOSE=1
+JAWS_VERBOSE=${JAWS_VERBOSE:="1"}
