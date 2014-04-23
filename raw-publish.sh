@@ -113,14 +113,26 @@ s3cmd sync \
 	--access_key $AWS_ACCESS_KEY_ID \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
-	--guess-mime-type \
-	--default-mime-type 'text/html' \
+	--mime-type 'text/html' \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--exclude '*.*' \
 	--include '*.html' \
+		_site/ $JAWS_BUCKET
+
+s3cmd sync \
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
+	--progress \
+	--mime-type 'application/xml' \
+	--acl-public \
+	$DELETE \
+	$INVALIDATE \
+	--add-header 'Content-Encoding:gzip' \
+	--exclude '*.*' \
 	--include '*.xml' \
 		_site/ $JAWS_BUCKET
 
@@ -135,14 +147,27 @@ s3cmd sync \
 	--access_key $AWS_ACCESS_KEY_ID \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
-	--guess-mime-type \
+	--mime-type 'text/css' \
+	--acl-public \
+	$INVALIDATE \
+	--add-header 'Content-Encoding:gzip' \
+	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
+	--exclude '*.*' \
+	--include '*.css' \
+		_site/ $JAWS_BUCKET
+
+s3cmd sync \
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
+	--progress \
+	--mime-type 'text/javascript' \
 	--acl-public \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.*' \
 	--include '*.js' \
-	--include '*.css' \
 		_site/ $JAWS_BUCKET
 
 #
