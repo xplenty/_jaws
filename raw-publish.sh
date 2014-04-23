@@ -114,6 +114,7 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
+	--default-mime-type 'text/html' \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
