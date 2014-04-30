@@ -67,17 +67,17 @@ fi
 # Minify JS, CSS, and HTML files
 #
 
-say "Minifying JS"
+# say "Minifying JS"
 
-find _site -name '*.js' \
-	$VERBOSE \
-	-exec java -jar $SCRIPTS_DIR/yuicompressor.jar -o {} {} \;
+# find _site -name '*.js' \
+# 	$VERBOSE \
+# 	-exec java -jar $SCRIPTS_DIR/yuicompressor.jar -o {} {} \;
 
-say "Minifying CSS"
+# say "Minifying CSS"
 
-find _site -name '*.css' \
-	$VERBOSE \
-	-exec java -jar $SCRIPTS_DIR/yuicompressor.jar -o {} {} \;
+# find _site -name '*.css' \
+# 	$VERBOSE \
+# 	-exec java -jar $SCRIPTS_DIR/yuicompressor.jar -o {} {} \;
 
 # say "Minifying HTML"
 
