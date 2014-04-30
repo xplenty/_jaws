@@ -42,18 +42,18 @@ if [[ $JAWS_VERBOSE -eq 1 ]]; then
 fi
 
 # Escape path for sed
-STATICCDN=${JAWS_STATICCDN//\//\\\/}
-IMAGECDN=${JAWS_IMAGECDN//\//\\\/}
+# STATICCDN=${JAWS_STATICCDN//\//\\\/}
+# IMAGECDN=${JAWS_IMAGECDN//\//\\\/}
 
-find _site \
-	-regextype posix-extended  \
-	-type f \
-	-regex '.*\.(html|js|css)' \
-	$VERBOSE \
-	-exec sed -ri "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
-	-exec sed -ri "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
-	-exec sed -ri "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
-	-exec sed -ri "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
+# find _site \
+# 	-regextype posix-extended  \
+# 	-type f \
+# 	-regex '.*\.(html|js|css)' \
+# 	$VERBOSE \
+# 	-exec sed -ri "s/\"\/([^\/][^\"]+\.(css|js))\"/\"$STATICCDN\1?r=$JAWS_REVISION\"/g" {} \; \
+# 	-exec sed -ri "s/\"\/([^\/][^\"]+\.(png|jpg|jpeg|gif))\"/\"$IMAGECDN\1?r=$JAWS_REVISION\"/g" {} \; \
+# 	-exec sed -ri "s/'\/([^\/][^']+\.(css|js))'/'$STATICCDN\1?r=$JAWS_REVISION'/g" {} \; \
+# 	-exec sed -ri "s/'\/([^\/][^']+\.(png|jpg|jpeg|gif))'/'$IMAGECDN\1?r=$JAWS_REVISION'/g" {} \;
 
 # TODO - this should really be replaced by a proper parser to be safe
 
