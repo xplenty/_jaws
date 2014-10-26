@@ -98,7 +98,6 @@ say "Compressing text files"
 
 # TODO additional prefixes like .txt? document files? configurable, ideally
 find _site -name '*.html' $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
-find _site -name '*.xml'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.js'   $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.css'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 
@@ -123,20 +122,20 @@ s3cmd sync \
 	--include '*.html' \
 		_site/ $JAWS_BUCKET
 
-s3cmd sync \
-	--config s3cfg \
-	--access_key $AWS_ACCESS_KEY_ID \
-	--secret_key $AWS_SECRET_ACCESS_KEY \
-	--progress \
-	--mime-type 'application/xml' \
-	--no-check-md5 \
-	--acl-public \
-	$DELETE \
-	$INVALIDATE \
-	--add-header 'Content-Encoding:gzip' \
-	--exclude '*.*' \
-	--include '*.xml' \
-		_site/ $JAWS_BUCKET
+# s3cmd sync \
+# 	--config s3cfg \
+# 	--access_key $AWS_ACCESS_KEY_ID \
+# 	--secret_key $AWS_SECRET_ACCESS_KEY \
+# 	--progress \
+# 	--mime-type 'application/xml' \
+# 	--no-check-md5 \
+# 	--acl-public \
+# 	$DELETE \
+# 	$INVALIDATE \
+# 	--add-header 'Content-Encoding:gzip' \
+# 	--exclude '*.*' \
+# 	--include '*.xml' \
+# 		_site/ $JAWS_BUCKET
 
 #
 # sync gzipped files which get a timestamp, so we can cache for a very long time
@@ -149,22 +148,7 @@ s3cmd sync \
 	--access_key $AWS_ACCESS_KEY_ID \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
-	--mime-type 'text/css' \
-	--no-check-md5 \
-	--acl-public \
-	$INVALIDATE \
-	--add-header 'Content-Encoding:gzip' \
-	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
-	--exclude '*.*' \
-	--include '*.css' \
-		_site/ $JAWS_BUCKET
-
-s3cmd sync \
-	--config s3cfg \
-	--access_key $AWS_ACCESS_KEY_ID \
-	--secret_key $AWS_SECRET_ACCESS_KEY \
-	--progress \
-	--mime-type 'text/javascript' \
+	--guess-mime-type \
 	--no-check-md5 \
 	--acl-public \
 	$INVALIDATE \
@@ -172,7 +156,38 @@ s3cmd sync \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.*' \
 	--include '*.js' \
+	--include '*.css' \
 		_site/ $JAWS_BUCKET
+
+# s3cmd sync \
+# 	--config s3cfg \
+# 	--access_key $AWS_ACCESS_KEY_ID \
+# 	--secret_key $AWS_SECRET_ACCESS_KEY \
+# 	--progress \
+# 	--mime-type 'text/css' \
+# 	--no-check-md5 \
+# 	--acl-public \
+# 	$INVALIDATE \
+# 	--add-header 'Content-Encoding:gzip' \
+# 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
+# 	--exclude '*.*' \
+# 	--include '*.css' \
+# 		_site/ $JAWS_BUCKET
+
+# s3cmd sync \
+# 	--config s3cfg \
+# 	--access_key $AWS_ACCESS_KEY_ID \
+# 	--secret_key $AWS_SECRET_ACCESS_KEY \
+# 	--progress \
+# 	--mime-type 'text/javascript' \
+# 	--no-check-md5 \
+# 	--acl-public \
+# 	$INVALIDATE \
+# 	--add-header 'Content-Encoding:gzip' \
+# 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
+# 	--exclude '*.*' \
+# 	--include '*.js' \
+# 		_site/ $JAWS_BUCKET
 
 #
 # sync remaining files, e.g., images, documents
@@ -188,6 +203,7 @@ s3cmd sync \
 	--guess-mime-type \
 	--no-check-md5 \
 	--acl-public \
+	$DELETE \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
 	--exclude '*.html' \
