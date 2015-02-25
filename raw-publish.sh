@@ -117,7 +117,6 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
-	# --add-header 'Content-Encoding:gzip' \
 	--exclude '*.*' \
 	--include '*.html' \
 		_site/ $JAWS_BUCKET
@@ -132,7 +131,7 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
-	# --add-header 'Content-Encoding:gzip' \
+	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
 	--exclude '*.*' \
 	--include '*.xml' \
 		_site/ $JAWS_BUCKET
