@@ -97,7 +97,7 @@ fi
 say "Compressing text files"
 
 # TODO additional prefixes like .txt? document files? configurable, ideally
-find _site -name '*.html' $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
+# find _site -name '*.html' $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.js'   $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.css'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 
@@ -117,25 +117,25 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
-	--add-header 'Content-Encoding:gzip' \
+	# --add-header 'Content-Encoding:gzip' \
 	--exclude '*.*' \
 	--include '*.html' \
 		_site/ $JAWS_BUCKET
 
-# s3cmd sync \
-# 	--config s3cfg \
-# 	--access_key $AWS_ACCESS_KEY_ID \
-# 	--secret_key $AWS_SECRET_ACCESS_KEY \
-# 	--progress \
-# 	--mime-type 'application/xml' \
-# 	--no-check-md5 \
-# 	--acl-public \
-# 	$DELETE \
-# 	$INVALIDATE \
-# 	--add-header 'Content-Encoding:gzip' \
-# 	--exclude '*.*' \
-# 	--include '*.xml' \
-# 		_site/ $JAWS_BUCKET
+s3cmd sync \
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
+	--progress \
+	--mime-type 'application/xml' \
+	--no-check-md5 \
+	--acl-public \
+	$DELETE \
+	$INVALIDATE \
+	# --add-header 'Content-Encoding:gzip' \
+	--exclude '*.*' \
+	--include '*.xml' \
+		_site/ $JAWS_BUCKET
 
 #
 # sync gzipped files which get a timestamp, so we can cache for a very long time
