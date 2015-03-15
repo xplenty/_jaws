@@ -117,6 +117,7 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
+	--cf-invalidate-default-index \
 	--exclude '*.*' \
 	--include '*.html' \
 		_site/ $JAWS_BUCKET
