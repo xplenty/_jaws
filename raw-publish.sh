@@ -81,14 +81,14 @@ fi
 
 # say "Minifying HTML"
 
-# find _site -name '*.html' \
-# 	$VERBOSE \
-# 	-exec java -jar $SCRIPTS_DIR/htmlcompressor.jar \
-# 		--compress-js \
-# 		--compress-css \
-# 		--remove-intertag-spaces \
-# 		--type html \
-# 		-o {} {} \;
+find _site -name '*.html' \
+	$VERBOSE \
+	-exec java -jar $SCRIPTS_DIR/htmlcompressor.jar \
+		--compress-js \
+		--compress-css \
+		--remove-intertag-spaces \
+		--type html \
+		-o {} {} \;
 
 #
 # gzip text-based files
