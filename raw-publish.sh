@@ -113,7 +113,6 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/html' \
-	--no-check-md5 \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
@@ -151,7 +150,6 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/css' \
-	--no-check-md5 \
 	--acl-public \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
@@ -166,7 +164,6 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/javascript' \
-	--no-check-md5 \
 	--acl-public \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
@@ -187,7 +184,6 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
-	--no-check-md5 \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
