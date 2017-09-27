@@ -7,6 +7,22 @@ if [ -f $FILE ]; then
 fi
 cd $WORKING_DIR
 
+
+#!/bin/bash
+function prevent_ci_timeout() {
+  (
+    while true; do
+      echo "Preventing CI timeout by echoing every 300 seconds"
+      sleep 300
+    done
+  ) &
+  local pid=$!
+  trap "kill ${pid}" SIGINT SIGTERM EXIT
+}
+
+# Prevent CI to not timeout
+prevent_ci_timeout
+
 #
 # Define a function for logging
 #
