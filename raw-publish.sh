@@ -210,4 +210,8 @@ s3cmd sync \
 	--exclude '*.css' \
 		_site/ $JAWS_BUCKET
 
+say "TODO: Setting page redirects metadata"
+
+cat _site/redirects.json
+
 say "Done."
