@@ -50,6 +50,7 @@ begin
     options.merge!(existing_options)
 
     options.merge!({
+      :acl => "public-read",
       :website_redirect_location => redirect_location,
       :metadata_directive => 'REPLACE'
     })
