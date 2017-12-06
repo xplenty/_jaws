@@ -29,40 +29,41 @@ begin
   bucket = s3.bucket(bucket_name)
 
   redirects.each do |from, to|
+    
     # The object key to set the redirect on must be the index.html file and shouldn't start with `/`
     object_key = "#{from.gsub(%r{^/}, "").chomp('/')}/index.html"
     redirect_location = to
 
-    # Get the object and all its metadata, permissions, etc 
-    object_summary = bucket.object(object_key)
-
-    # Get the object and all its metadata, permissions, etc 
-    object = object_summary.get
-
-    # Copy to the same location
-    location = "#{bucket.name}/#{object_summary.key}"
-
-    # Build a new options object
-    options = {}
-
-    # Merge in the object's existing properties, but only keeping valid attributes for the copy_to method
-    existing_options = object.to_h.delete_if {|k,v| !COPY_TO_OPTIONS.include?(k) }
-    options.merge!(existing_options)
-
-    options.merge!({
-      :acl => "public-read",
-      :website_redirect_location => redirect_location,
-      :metadata_directive => 'REPLACE'
-    })
-
-    if object.size >= 5_000_000_000
-      options.merge!({multipart_copy: true})
-    else
-      # Only used if multipart_copy is true
-      options.delete(:content_length)
-    end
-
     begin
+      # Get the object and all its metadata, permissions, etc 
+      object_summary = bucket.object(object_key)
+
+      # Get the object and all its metadata, permissions, etc 
+      object = object_summary.get
+
+      # Copy to the same location
+      location = "#{bucket.name}/#{object_summary.key}"
+
+      # Build a new options object
+      options = {}
+
+      # Merge in the object's existing properties, but only keeping valid attributes for the copy_to method
+      existing_options = object.to_h.delete_if {|k,v| !COPY_TO_OPTIONS.include?(k) }
+      options.merge!(existing_options)
+
+      options.merge!({
+        :acl => "public-read",
+        :website_redirect_location => redirect_location,
+        :metadata_directive => 'REPLACE'
+      })
+
+      if object.size >= 5_000_000_000
+        options.merge!({multipart_copy: true})
+      else
+        # Only used if multipart_copy is true
+        options.delete(:content_length)
+      end
+    
       object_summary.copy_to(location, options)
       puts "Set: '#{object_key}' -> '#{redirect_location}'"
     rescue => e
@@ -70,5 +71,5 @@ begin
     end
   end
 rescue => e
-  puts "An error occured: #{e}"
+  puts "An error occured setting AWS redirects: #{e}"
 end
