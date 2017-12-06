@@ -212,6 +212,6 @@ s3cmd sync \
 
 say "Setting redirects metadata"
 
-$SCRIPTS_DIR/set-aws-redirects.rb --bucket=$JAWS_BUCKET --redirects=_site/redirects.json
+$SCRIPTS_DIR/set-aws-redirects.rb --bucket=$BUCKET --redirects=_site/redirects.json
 
 say "Done."
