@@ -214,4 +214,15 @@ say "Setting redirects metadata"
 
 $SCRIPTS_DIR/set-aws-redirects.rb --bucket=$BUCKET --redirects=_site/redirects.json
 
+#
+# set Cache-Control header for assets
+#
+
+say "Setting assets metadata"
+
+s3cmd modify \
+   --recursive \
+   --add-header="Cache-Control:max-age=31557600" \
+   "${JAWS_BUCKET}assets/"
+
 say "Done."
