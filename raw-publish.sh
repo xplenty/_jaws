@@ -203,7 +203,7 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
-	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
+	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.html' \
 	--exclude '*.xml' \
 	--exclude '*.js' \
@@ -213,16 +213,5 @@ s3cmd sync \
 say "Setting redirects metadata"
 
 $SCRIPTS_DIR/set-aws-redirects.rb --bucket=$BUCKET --redirects=_site/redirects.json
-
-#
-# set Cache-Control header for assets
-#
-
-say "Setting assets metadata"
-
-s3cmd modify \
-   --recursive \
-   --add-header="Cache-Control:max-age=31557600" \
-   "${JAWS_BUCKET}assets/"
 
 say "Done."
