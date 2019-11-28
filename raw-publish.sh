@@ -203,7 +203,7 @@ s3cmd sync \
 	--acl-public \
 	$DELETE \
 	$INVALIDATE \
-	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
+	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.html' \
 	--exclude '*.xml' \
 	--exclude '*.js' \
