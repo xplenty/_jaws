@@ -116,6 +116,7 @@ say "Compressing text files"
 find _site -name '*.html' $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.js'   $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 find _site -name '*.css'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
+find _site -name '*.svg'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 
 #
 # sync gzipped html/xml:
