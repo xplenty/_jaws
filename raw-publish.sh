@@ -47,6 +47,14 @@ say "Generating Site"
 $JAWS_GENERATE
 
 #
+# Remove unlocalized pages
+#
+
+say "Removing unlocalized pages"
+
+$SCRIPTS_DIR/remove_unlocalized.rb
+
+#
 # Use absolute CDN paths for images, css, js
 #
 
