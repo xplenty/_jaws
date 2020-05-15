@@ -44,7 +44,7 @@ function say {
 
 say "Generating Site"
 
-$JAWS_GENERATE
+bash -c "$JAWS_GENERATE"
 
 #
 # Use absolute CDN paths for images, css, js
