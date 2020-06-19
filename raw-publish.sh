@@ -136,7 +136,7 @@ s3cmd sync \
 	--add-header "Cache-Control: max-age=7200, must-revalidate"  \
 	--cf-invalidate-default-index \
 	--exclude '*.*' \
-	--include '*.html' \
+	--include $HTML_FILES_PATTERN \
 		_site/ $JAWS_BUCKET
 
 s3cmd sync \
