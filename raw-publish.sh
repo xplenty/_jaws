@@ -137,7 +137,7 @@ s3cmd sync \
 	--cf-invalidate-default-index \
 	--exclude '*.*' \
 	--include $HTML_FILES_PATTERN \
-		_site/ $JAWS_BUCKET
+	 $JAWS_BUCKET
 
 s3cmd sync \
 	--config s3cfg \
