@@ -123,6 +123,15 @@ find _site -name '*.css'  $VERBOSE -exec $JAWS_ZIPCMD {} \; -exec mv {}.gz {} \;
 
 say "Syncing HTML/XML"
 
+s3cmd del \
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
+	--progress \
+	--exclude '*.*' \
+	--include '*.html' \
+		_site/ $JAWS_BUCKET
+
 s3cmd put \
 	--config s3cfg \
 	--access_key $AWS_ACCESS_KEY_ID \
