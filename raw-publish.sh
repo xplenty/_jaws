@@ -146,7 +146,6 @@ s3cmd sync \
 	--mime-type 'application/xml' \
 	--no-check-md5 \
 	--acl-public \
-	$DELETE \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
 	--exclude '*.*' \
@@ -200,7 +199,6 @@ s3cmd sync \
 	--progress \
 	--guess-mime-type \
 	--acl-public \
-	$DELETE \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.html' \
