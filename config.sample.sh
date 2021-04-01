@@ -49,3 +49,9 @@ JAWS_ZIPCMD="gzip -9 -n"
 ## Echo out filenames that are being manipulated - Could get spammy with a large blog
 ##
 JAWS_VERBOSE=${JAWS_VERBOSE:="1"}
+
+##
+## Set S3 object ACL to public
+##
+JAWS_ACL_PUBLIC=${JAWS_ACL_PUBLIC:=1}
+

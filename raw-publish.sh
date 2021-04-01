@@ -7,6 +7,10 @@ if [ -f $FILE ]; then
 fi
 cd $WORKING_DIR
 
+ACL_PUBLIC=""
+if [[ $JAWS_ACL_PUBLIC -eq 1 ]]; then
+	ACL_PUBLIC="--acl-public"
+fi
 
 #!/bin/bash
 function prevent_ci_timeout() {
@@ -129,7 +133,7 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/html' \
-	--acl-public \
+	$ACL_PUBLIC \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--add-header "Cache-Control: max-age=7200, must-revalidate"  \
@@ -145,7 +149,7 @@ s3cmd sync \
 	--progress \
 	--mime-type 'application/xml' \
 	--no-check-md5 \
-	--acl-public \
+	$ACL_PUBLIC \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_SHORTCACHE" \
 	--exclude '*.*' \
@@ -164,7 +168,7 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/css' \
-	--acl-public \
+	$ACL_PUBLIC \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
@@ -178,7 +182,7 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--mime-type 'text/javascript' \
-	--acl-public \
+	$ACL_PUBLIC \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
@@ -198,7 +202,7 @@ s3cmd sync \
 	--secret_key $AWS_SECRET_ACCESS_KEY \
 	--progress \
 	--guess-mime-type \
-	--acl-public \
+	$ACL_PUBLIC \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.html' \
