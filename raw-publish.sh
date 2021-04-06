@@ -190,6 +190,22 @@ s3cmd sync \
 	--include '*.js' \
 		_site/ $JAWS_BUCKET
 
+say "Syncing SVG"
+
+s3cmd sync \
+	--config s3cfg \
+	--access_key $AWS_ACCESS_KEY_ID \
+	--secret_key $AWS_SECRET_ACCESS_KEY \
+	--progress \
+	--guess-mime-type \
+	$ACL_PUBLIC \
+	$INVALIDATE \
+	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
+	--add-header "Content-Type: image/svg+xml" \
+	--exclude '*.*' \
+	--include '*.svg' \
+		_site/ $JAWS_BUCKET
+
 #
 # sync remaining files, e.g., images, documents
 #
@@ -206,6 +222,7 @@ s3cmd sync \
 	$INVALIDATE \
 	--add-header "Cache-Control: max-age=$JAWS_LONGCACHE" \
 	--exclude '*.html' \
+	--exclude '*.svg' \
 	--exclude '*.xml' \
 	--exclude '*.js' \
 	--exclude '*.css' \
