@@ -137,6 +137,7 @@ s3cmd sync \
 	$INVALIDATE \
 	--add-header 'Content-Encoding:gzip' \
 	--add-header "Cache-Control: max-age=7200, must-revalidate"  \
+	--add-header "Content-Type: text/html; charset=utf-8"  \
 	--cf-invalidate-default-index \
 	--exclude '*.*' \
 	--include '*.html' \
